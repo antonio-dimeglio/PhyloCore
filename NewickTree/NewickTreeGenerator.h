@@ -20,7 +20,9 @@ class NewickTreeGenerator : public NewickBaseListener{
     public:
         void enterRootinternal(NewickParser::RootinternalContext *ctx) override;
         void exitRootinternal(NewickParser::RootinternalContext *ctx) override;
-
+        void enterRootleaf(NewickParser::RootleafContext *ctx) override;
+        void exitRootleaf(NewickParser::RootleafContext *ctx) override;
+        
         void exitLength(NewickParser::LengthContext *ctx) override;
 
         void exitName(NewickParser::NameContext *ctx) override;

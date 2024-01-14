@@ -9,7 +9,7 @@
 using namespace antlr4;
 
 int main(){
-    NewickTree newickTree("();");
+    NewickTree newickTree("((B:0.2,(C:0.3,D:0.4)E:0.5)F:0.1)A;");
     if (!newickTree.getError().empty()) {
         std::cout << newickTree.getError() << std::endl;
         return 1;

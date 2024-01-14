@@ -12,6 +12,18 @@ void NewickTreeGenerator::exitRootinternal(NewickParser::RootinternalContext *ct
     nodeStack.pop();
 }
 
+void NewickTreeGenerator::enterRootleaf(NewickParser::RootleafContext *ctx){
+    auto node = std::make_unique<NewickTreeNode>(std::string(""), 0.0f);
+    nodeStack.push(std::move(node));
+}
+
+void NewickTreeGenerator::exitRootleaf(NewickParser::RootleafContext *ctx){
+    root = std::move(nodeStack.top());
+    root->name = currentName;
+    root->length = 0.0f;
+    nodeStack.pop();
+}
+
 
 void NewickTreeGenerator::exitLength(NewickParser::LengthContext *ctx){
     if (ctx->FLOAT() != nullptr && ctx->FLOAT()->getText() != ""){
