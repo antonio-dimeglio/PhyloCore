@@ -1,18 +1,18 @@
-#ifndef NEWICKTREE_H
-#define NEWICKTREE_H
+#ifndef PHYLOGENETICTREE_H
+#define PHYLOGENETICTREE_H
 
-#include "NewickTreeNode.h"
+#include "PhylogeneticTreeNode.h"
 #include "../Newick/NewickParser.h"
 #include "../Newick/NewickLexer.h"
 
 
-class NewickTree{
+class PhylogeneticTree{
     public:
-        NewickTree(std::string newickString);
+        PhylogeneticTree(std::string newickString);
         void buildTree();
 
         std::string getError() const { return error; }
-        
+        void printTree() const { root->print();}
 
     private: 
         NewickParser::ProgContext* progTree;
@@ -22,8 +22,8 @@ class NewickTree{
         NewickParser* parser;
 
 
-        std::unique_ptr<NewickTreeNode> root; 
+        std::shared_ptr<PhylogeneticTreeNode> root;
         std::string error = ""; 
 };
 
-#endif
+#endif // PHYLOGENETICTREE_H

@@ -1,5 +1,5 @@
-#ifndef NEWICKTREENODE_H
-#define NEWICKTREENODE_H
+#ifndef PHYLOGENETICTREENODE_H
+#define PHYLOGENETICTREENODE_H
 
 #include <string>
 #include <memory>
@@ -7,12 +7,12 @@
 #include <iostream>
 
 
-struct NewickTreeNode{
+struct PhylogeneticTreeNode{
     std::string name;
-    float length; 
-    std::vector<std::unique_ptr<NewickTreeNode>> children;
+    float length;
+    std::vector<std::shared_ptr<PhylogeneticTreeNode>> children;
 
-    NewickTreeNode(std::string name, float length) : name(name), length(length){}
+    PhylogeneticTreeNode(std::string name, float length) : name(name), length(length){}
 
     void print(int depth=1){
         for (int i = 0; i < depth; i++){
@@ -27,4 +27,4 @@ struct NewickTreeNode{
 };
 
 
-#endif // NEWICKTREENODE_H
+#endif // PHYLOGENETICTREENODE_H

@@ -1,8 +1,8 @@
 #ifndef NEWICKTREEGENERATOR_H
 #define NEWICKTREEGENERATOR_H
 
-#include "NewickTree.h"
-#include "NewickTreeNode.h"
+#include "../Tree/PhylogeneticTree.h"
+#include "../Tree/PhylogeneticTreeNode.h"
 #include "../Newick/NewickBaseListener.h"
 
 #include <memory>   
@@ -13,7 +13,7 @@ class NewickTreeGenerator : public NewickBaseListener{
         float currentBranchLength;
         bool isInternal = false;
 
-        std::stack<std::unique_ptr<NewickTreeNode>> nodeStack;
+        std::stack<std::shared_ptr<PhylogeneticTreeNode>> nodeStack;
         
 
 
@@ -33,7 +33,7 @@ class NewickTreeGenerator : public NewickBaseListener{
 
         void enterInternal(NewickParser::InternalContext *ctx) override;
         void exitInternal(NewickParser::InternalContext *ctx) override;        
-        std::unique_ptr<NewickTreeNode> root;
+        std::shared_ptr<PhylogeneticTreeNode> root;
 
 };
 

@@ -4,7 +4,7 @@ ANTLR_LIB = /usr/local/lib
 ANTLR_INCLUDE = /usr/local/include/antlr4-runtime
 CFLAGS = -I$(ANTLR_INCLUDE) 
 LDFLAGS = -L$(ANTLR_LIB) -lantlr4-runtime
-SOURCES = main.cpp $(wildcard Newick/*.cpp) $(wildcard NewickTree/*.cpp)
+SOURCES = main.cpp $(wildcard Newick/*.cpp) $(wildcard NewickTree/*.cpp) $(wildcard Tree/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 
 # Targets

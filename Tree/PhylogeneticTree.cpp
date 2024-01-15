@@ -1,13 +1,13 @@
-#include "NewickTree.h"
+#include "PhylogeneticTree.h"
 #include "antlr4-runtime.h"
 #include <iostream>
 
 #include "tree/IterativeParseTreeWalker.h"
-#include "NewickTreeGenerator.h"
+#include "../NewickTree/NewickTreeGenerator.h"
 #include "../Newick/NewickBaseListener.h"
-#include "ExceptionErrorListener.h"
+#include "../NewickTree/ExceptionErrorListener.h"
 
-NewickTree::NewickTree(std::string newickString) {
+PhylogeneticTree::PhylogeneticTree(std::string newickString) {
     input = new antlr4::ANTLRInputStream(newickString);
     lexer = new NewickLexer(input);
     lexer->removeErrorListeners();
@@ -25,13 +25,11 @@ NewickTree::NewickTree(std::string newickString) {
     }
 }
 
-void NewickTree::buildTree(){
+void PhylogeneticTree::buildTree(){
     using namespace antlr4::tree;
     IterativeParseTreeWalker walker;
     NewickTreeGenerator generator;
     walker.walk(&generator, progTree);
-    root = std::move(generator.root);
-    root->print();
-    
+    root = generator.root;
 }
 
